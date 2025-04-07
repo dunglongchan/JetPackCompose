@@ -26,9 +26,9 @@ class UserImpl(
         val processJob = launch {
             while (process <= 100) {
                 if (process >= 80 && (status is AuthResult.Success || status is AuthResult.Error)) {
-                    delay(10L)
+                    delay(5L)
                 } else {
-                    delay(50L)
+                    delay(10L)
                 }
                 send(AuthResult.VerifyingUser(process))
                 process += 1

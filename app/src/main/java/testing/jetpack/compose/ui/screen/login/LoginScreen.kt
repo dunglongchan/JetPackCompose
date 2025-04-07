@@ -44,6 +44,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import testing.jetpack.compose.domain.model.AuthResult
+import testing.jetpack.compose.domain.model.LocalUser
 import testing.jetpack.compose.ui.theme.JetPackComposeTheme
 import testing.jetpack.compose.ui.theme.PrimaryColor
 import testing.jetpack.compose.ui.theme.PrimaryGreen
@@ -55,7 +56,8 @@ import testing.jetpack.compose.ui.util.DoubleBackPressHandler
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: LoginViewModel = hiltViewModel(),
+    onLoginSuccess: (LocalUser?) -> Unit = {}
 ) {
     DoubleBackPressHandler()
 
@@ -108,6 +110,8 @@ fun LoginScreen(
 
                     is AuthResult.Success -> {
                         // navigate to screen
+                        val user = (authResult as? AuthResult.Success)?.user
+                        onLoginSuccess.invoke(user)
                     }
 
                     is AuthResult.VerifyingUser -> {
