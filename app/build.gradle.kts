@@ -75,4 +75,7 @@ dependencies {
 
     //Glide
     implementation(libs.bumptech.glide)
+
+    //Gson
+    implementation(libs.gson)
 }

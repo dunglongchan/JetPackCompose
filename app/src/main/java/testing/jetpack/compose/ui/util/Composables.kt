@@ -2,6 +2,7 @@ package testing.jetpack.compose.ui.util
 
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -11,6 +12,8 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -98,5 +101,29 @@ fun CustomTextField(
         keyboardOptions = keyboardOptions,
         trailingIcon = if (visualTransformation is PasswordVisualTransformation) trailingIcon else null,
         isError = isError
+    )
+}
+
+@Composable
+fun RowScope.MyCustomNavBarItem(
+    icon: @Composable () -> Unit,
+    label: @Composable (() -> Unit)? = null,
+    isSelected: Boolean = false,
+    onTabSelected: () -> Unit
+) {
+    NavigationBarItem(
+        icon = icon,
+        label = label,
+        selected = isSelected,
+        onClick = {
+            onTabSelected.invoke()
+        }, colors = NavigationBarItemDefaults.colors(
+            indicatorColor = JetPackComposeTheme.colors.primary,
+            selectedIconColor = JetPackComposeTheme.colors.inkButton,
+            unselectedIconColor = JetPackComposeTheme.colors.inkHeadline,
+            selectedTextColor = JetPackComposeTheme.colors.primary,
+            unselectedTextColor = JetPackComposeTheme.colors.inkHeadline,
+        )
+
     )
 }

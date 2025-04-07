@@ -1,12 +1,15 @@
 package testing.jetpack.compose.domain.model
 
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class LocalUser(
     val userID: Int = 0,
     val userInfo: UserInformation,
     val loginForm: UserLoginForm
 )
 
+@Serializable
 data class UserLoginForm(
     val userName: String,
     val password: String
@@ -18,6 +21,7 @@ data class UserLoginForm(
 
 }
 
+@Serializable
 data class UserInformation(
     val fullName: String,
     val dateOfBirth: String,
