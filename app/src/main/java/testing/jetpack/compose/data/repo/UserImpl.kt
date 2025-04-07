@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import testing.jetpack.compose.data.LocalUserDataSource
 import testing.jetpack.compose.data.ServerUserDataSource
 import testing.jetpack.compose.domain.model.AuthResult
+import testing.jetpack.compose.domain.model.LocalUser
 import testing.jetpack.compose.domain.model.UserLoginForm
 import testing.jetpack.compose.domain.repository.UserRepository
 
@@ -51,6 +52,10 @@ class UserImpl(
 
         awaitClose()
     }.flowOn(Dispatchers.IO)
+
+    override fun getAllUser(): List<LocalUser> {
+        return localUserDataSource.getAllLocalUser()
+    }
 
     override fun actionUserRegister(userLoginForm: UserLoginForm): Flow<AuthResult> = flow {
 

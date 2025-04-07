@@ -2,6 +2,8 @@ package testing.jetpack.compose.ui.util
 
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
@@ -31,8 +33,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import testing.jetpack.compose.domain.model.LocalUser
 import testing.jetpack.compose.ui.theme.JetPackComposeTheme
 
 
@@ -126,4 +130,16 @@ fun RowScope.MyCustomNavBarItem(
         )
 
     )
+}
+
+@Composable
+fun ShowUserInfo(user: LocalUser) {
+    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        Text("Hello, ${user.userInfo.fullName}")
+        Text(user.userInfo.email)
+        Text(user.userInfo.phone)
+        Text(user.userInfo.jobTitle)
+        Text(user.userInfo.dateOfBirth)
+        Text(user.loginForm.userName)
+    }
 }
