@@ -168,4 +168,6 @@ class LocalUserDataSource {
         return sampleData.find { it.userID == userID }?.userInfo
     }
 
+    fun getAllLocalUser() = sampleData
+
 }
